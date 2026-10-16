@@ -27,7 +27,7 @@ jobs:
             pip install ruff
             ruff check . || echo "Lint finished"
       - run:
-          name: Run Tests
+          name: Run Automation Tests
           environment:
             DATABASE_URL: postgresql://splitter_user:splitter_password@localhost:5432/expense_splitter
             REDIS_URL: redis://localhost:6379/0
