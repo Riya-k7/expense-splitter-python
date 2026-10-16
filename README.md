@@ -94,6 +94,14 @@ Rounding. Three people splitting 100 rupees must still total exactly 100, not 99
 
 Write your answer in your README. It is worth more marks than the feature.
 
+### Leftover Paisa Rounding Strategy
+
+Our application operates strictly with integer values representing monetary assets in paise rather than floating-point decimals to eliminate floating-point arithmetic drift errors completely. 
+
+To ensure that unevenly split bills (such as 100 rupees split among 3 individuals) sum up to the total transaction amount exactly without dropping fractional currency, the system isolates the leftover remainder using a deterministic division pattern via Python's built-in divmod(total_paise, n). 
+
+The integer quotient forms the baseline share value distributed to everyone, and the remaining leftover fraction (extra) is absorbed consistently and deterministically by allocating exactly 1 additional paisa to the earliest shares in the array matrix (indices from 0 to extra - 1). This implementation ensures that the sum of all individual debt parts always equals the overall bill total exactly, maintaining a structural net balance of zero across the group settlement.
+
 ---
 
 ## Getting unstuck
