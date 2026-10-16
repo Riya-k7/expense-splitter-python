@@ -51,12 +51,15 @@ jobs:
           command: |
             echo "$DOCKERHUB_TOKEN" | docker login -u "$DOCKERHUB_USER" --password-stdin
             
+            # Bulletproof fallback selector logic string for temporary features branches
             if [ "$CIRCLE_BRANCH" = "main" ]; then
               TAG="qa"
             elif [ "$CIRCLE_BRANCH" = "staging" ]; then
               TAG="stage"
             elif [ "$CIRCLE_BRANCH" = "prod" ]; then
               TAG="prod"
+            else
+              TAG="qa"
             fi
             
             SHORT_SHA=$(echo $CIRCLE_SHA1 | cut -c1-7)
