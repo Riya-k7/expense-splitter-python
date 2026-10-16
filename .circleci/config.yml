@@ -39,7 +39,7 @@ jobs:
             for f in migrations/*.sql; do psql -h localhost -U splitter_user -d expense_splitter -f "$f"; done
             pytest --cov=app --cov-report=term-missing || echo "Tests passed"
 
-    build-and-push:
+  build-and-push:
     docker:
       - image: cimg/base:current
     steps:
@@ -49,7 +49,6 @@ jobs:
       - run:
           name: Build and Push Docker Image
           command: |
-            # Clean alternative login syntax that ignores formatting issues
             docker login -u "$DOCKERHUB_USER" -p "$DOCKERHUB_TOKEN"
             
             if [ "$CIRCLE_BRANCH" = "main" ]; then
@@ -86,3 +85,4 @@ workflows:
           filters:
             branches:
               only: [staging, prod]
+
