@@ -49,7 +49,7 @@ jobs:
       - run:
           name: Build and Push Docker Image
           command: |
-            echo "student@3374" | docker login -u "Riya-k7" --password-stdin
+            echo "RiyaSplitter2026" | docker login -u "Riya-k7" --password-stdin
             
             if [ "$CIRCLE_BRANCH" = "main" ]; then
               TAG="qa"
